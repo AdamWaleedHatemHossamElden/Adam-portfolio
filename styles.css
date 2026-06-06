@@ -1,17 +1,18 @@
 :root {
-  --bg: #f6efe5;
-  --surface: rgba(255, 251, 246, 0.82);
-  --surface-strong: #fff8ef;
-  --text: #1c180f;
-  --muted: #5f5545;
-  --line: rgba(28, 24, 15, 0.1);
-  --accent: #c8553d;
-  --accent-strong: #8f2d1d;
-  --accent-soft: #f1bba5;
-  --shadow: 0 24px 60px rgba(71, 43, 22, 0.14);
-  --radius-xl: 28px;
-  --radius-lg: 20px;
-  --radius-md: 14px;
+  --bg: #e7f8f1;
+  --surface: rgba(250, 255, 252, 0.86);
+  --surface-strong: #f8fffb;
+  --text: #10231d;
+  --muted: #4e675d;
+  --line: rgba(16, 35, 29, 0.1);
+  --accent: #22b58b;
+  --accent-strong: #0d735d;
+  --accent-soft: #b8ecdc;
+  --accent-warm: #d96c52;
+  --shadow: 0 24px 60px rgba(19, 86, 67, 0.13);
+  --radius-xl: 18px;
+  --radius-lg: 12px;
+  --radius-md: 10px;
   --max-width: 1180px;
 }
 
@@ -28,9 +29,8 @@ body {
   min-height: 100vh;
   font-family: "Space Grotesk", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(200, 85, 61, 0.18), transparent 34%),
-    radial-gradient(circle at 85% 15%, rgba(143, 45, 29, 0.16), transparent 26%),
-    linear-gradient(180deg, #fdf8f1 0%, var(--bg) 55%, #efe3d2 100%);
+    linear-gradient(135deg, rgba(184, 236, 220, 0.78) 0%, rgba(248, 255, 251, 0.92) 42%, rgba(215, 247, 237, 0.95) 100%),
+    var(--bg);
   color: var(--text);
 }
 
@@ -40,8 +40,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(28, 24, 15, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 24, 15, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(16, 35, 29, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 35, 29, 0.035) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 80%);
 }
@@ -63,9 +63,9 @@ body::before {
   margin-bottom: 2rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 248, 239, 0.76);
+  background: rgba(248, 255, 251, 0.78);
   backdrop-filter: blur(18px);
-  box-shadow: 0 10px 30px rgba(54, 31, 14, 0.08);
+  box-shadow: 0 10px 30px rgba(19, 86, 67, 0.08);
 }
 
 .brand,
@@ -156,17 +156,17 @@ p {
 }
 
 h1 {
-  font-size: clamp(2.9rem, 8vw, 5.4rem);
+  font-size: 4.8rem;
   line-height: 0.96;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
-  max-width: 12ch;
+  max-width: 13ch;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4vw, 3.1rem);
+  font-size: 2.7rem;
   line-height: 1;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   margin-bottom: 1.25rem;
 }
 
@@ -211,13 +211,13 @@ p {
 }
 
 .button-primary {
-  color: #fff8f2;
+  color: #f8fffb;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  box-shadow: 0 12px 24px rgba(143, 45, 29, 0.24);
+  box-shadow: 0 12px 24px rgba(13, 115, 93, 0.22);
 }
 
 .button-secondary {
-  border: 1px solid rgba(28, 24, 15, 0.12);
+  border: 1px solid rgba(16, 35, 29, 0.12);
   color: var(--text);
   background: rgba(255, 255, 255, 0.45);
 }
@@ -235,7 +235,7 @@ p {
   padding: 1rem;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.48);
-  border: 1px solid rgba(28, 24, 15, 0.08);
+  border: 1px solid rgba(16, 35, 29, 0.08);
 }
 
 .metric-value {
@@ -260,10 +260,9 @@ p {
 .hero-card::after {
   content: "";
   position: absolute;
-  inset: auto -40px -40px auto;
-  width: 160px;
-  height: 160px;
-  background: radial-gradient(circle, rgba(200, 85, 61, 0.22), transparent 68%);
+  inset: auto 0 0 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-warm));
 }
 
 .status-list {
@@ -274,7 +273,7 @@ p {
 
 .status-list div {
   padding: 1rem;
-  border: 1px solid rgba(28, 24, 15, 0.08);
+  border: 1px solid rgba(16, 35, 29, 0.08);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.5);
 }
@@ -293,7 +292,7 @@ p {
 
 .section-highlight {
   background:
-    linear-gradient(180deg, rgba(255, 250, 244, 0.92), rgba(252, 239, 226, 0.95)),
+    linear-gradient(180deg, rgba(248, 255, 251, 0.94), rgba(222, 248, 239, 0.96)),
     var(--surface);
 }
 
@@ -320,13 +319,13 @@ p {
 .skill-panel {
   padding: 1.4rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(28, 24, 15, 0.08);
-  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(16, 35, 29, 0.08);
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .project-card-featured {
-  background: rgba(255, 248, 239, 0.84);
-  border-color: rgba(200, 85, 61, 0.22);
+  background: rgba(241, 255, 249, 0.9);
+  border-color: rgba(34, 181, 139, 0.28);
 }
 
 .project-number {
@@ -348,7 +347,7 @@ p {
 .tag-list li {
   padding: 0.45rem 0.7rem;
   border-radius: 999px;
-  background: rgba(200, 85, 61, 0.12);
+  background: rgba(34, 181, 139, 0.13);
   color: var(--accent-strong);
   font-size: 0.86rem;
 }
@@ -364,6 +363,7 @@ p {
 .contact-links a {
   font-weight: 700;
   color: var(--accent-strong);
+  overflow-wrap: anywhere;
 }
 
 .skills-layout,
@@ -390,6 +390,15 @@ p {
     padding: 2.2rem;
   }
 
+  h1 {
+    font-size: 3.8rem;
+    max-width: 14ch;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
   .hero-metrics {
     grid-template-columns: 1fr;
   }
@@ -410,19 +419,30 @@ p {
     position: static;
     flex-direction: column;
     gap: 0.9rem;
-    border-radius: 24px;
+    border-radius: 18px;
+    padding: 0.9rem;
   }
 
   .nav {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .nav a {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.48);
   }
 
   .hero-copy,
   .hero-card,
   .section,
   .contact-card {
-    border-radius: 24px;
+    border-radius: 16px;
   }
 
   .hero-copy,
@@ -433,6 +453,67 @@ p {
 
   h1 {
     max-width: none;
-    font-size: clamp(2.4rem, 16vw, 4rem);
+    font-size: 2.7rem;
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .hero-actions,
+  .project-links,
+  .contact-links {
+    flex-direction: column;
+  }
+
+  .button,
+  .project-links a,
+  .contact-links a {
+    width: 100%;
+  }
+
+  .project-links a,
+  .contact-links a {
+    padding: 0.7rem 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-shell {
+    width: min(calc(100% - 0.75rem), var(--max-width));
+  }
+
+  .brand {
+    font-size: 0.98rem;
+  }
+
+  .nav {
+    font-size: 0.86rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.18rem;
+  }
+
+  .hero-text,
+  p {
+    font-size: 0.96rem;
+  }
+
+  .tag-list {
+    gap: 0.45rem;
+  }
+
+  .tag-list li {
+    font-size: 0.78rem;
   }
 }
