@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Tanta 21</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <header class="site-nav" id="siteNav">
+      <a class="nav-logo" href="#hero"><span>TANTA</span><em>21</em></a>
+      <nav class="nav-links">
+        <a href="#teams">Teams</a>
+        <a href="#memories">Memories</a>
+        <a href="#videos">Videos</a>
+        <a href="#message">Message</a>
+      </nav>
+      <button class="nav-party-btn" id="partyBtn" type="button">🎉 Party Mode</button>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero-parallax" id="heroParallax">
+
+          <div class="floating-orb ahly-orb" data-depth="0.022">
+            <div class="orb-icon">🦅</div>
+            <div class="orb-name">AL AHLY</div>
+            <div class="orb-sub">Est. 1907</div>
+          </div>
+
+          <div class="floating-orb madrid-orb" data-depth="0.014">
+            <div class="orb-icon">👑</div>
+            <div class="orb-name">REAL MADRID</div>
+            <div class="orb-sub">Est. 1902</div>
+          </div>
+
+          <div class="hero-center">
+            <p class="hero-eyebrow">June 16, 2026 · Alexandria → Greece → Everywhere</p>
+            <h1 class="hero-h1">
+              <span class="h1-happy">HAPPY</span>
+              <span class="h1-num">21<sup>ST</sup></span>
+              <span class="h1-name">TANTA.</span>
+            </h1>
+            <p class="hero-sub">Ahmed Tantawy. Egyptian brother. Football addict. Sleepover legend. Secret keeper.</p>
+            <div class="hero-btns">
+              <a class="hbtn solid" href="#story">The Story</a>
+              <button class="hbtn outline" id="fireBtn" type="button">Fire Confetti</button>
+            </div>
+          </div>
+
+          <div class="hero-photo" data-depth="0.01">
+            <div class="polaroid tilt-card">
+              <div class="tilt-inner">
+                <img src="pics/WhatsApp Image 2026-06-15 at 21.35.23.jpeg" alt="Ahmed Tantawy" />
+                <span class="polaroid-caption">Tanta, always.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">
+          <div class="scroll-bar"></div>
+          <span>scroll</span>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section class="countdown-section">
+        <p class="cd-label">Birthday Countdown</p>
+        <div class="cd-clocks">
+          <div class="cd-unit"><div class="cd-num" id="cdDays">00</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdHours">00</div><div class="cd-lbl">Hours</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdMinutes">00</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdSeconds">00</div><div class="cd-lbl">Sec</div></div>
+        </div>
+      </section>
+
+      <!-- INTRO -->
+      <section class="intro-section" id="story">
+        <div class="intro-inner reveal">
+          <p class="section-eyebrow">The Brotherhood</p>
+          <blockquote class="intro-quote">
+            "Two Egyptians far from home. One college in Greece.
+            One day that turned into family."
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- QUICK FACTS -->
+      <section class="facts-section reveal">
+        <div class="facts-grid">
+          <div class="fact-card tilt-card"><div class="tilt-inner"><span class="fact-lbl">Known As</span><span class="fact-val">Tanta</span></div></div>
+          <div class="fact-card tilt-card"><div class="tilt-inner"><span class="fact-lbl">From</span><span class="fact-val">Alexandria</span></div></div>
+          <div class="fact-card tilt-card"><div class="tilt-inner"><span class="fact-lbl">Turning</span><span class="fact-val">21</span></div></div>
+          <div class="fact-card tilt-card"><div class="tilt-inner"><span class="fact-lbl">Status</span><span class="fact-val">Brother</span></div></div>
+        </div>
+      </section>
+
+      <!-- TEAMS -->
+      <section class="teams-section" id="teams">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Football DNA</p>
+          <h2>Two clubs. One man. No middle ground.</h2>
+        </div>
+
+        <div class="teams-row">
+
+          <!-- AL AHLY -->
+          <div class="team-block ahly-block reveal">
+            <div class="flip-badge">
+              <div class="flip-badge-inner">
+                <div class="flip-front ahly-front">
+                  <div class="badge-ring">
+                    <div class="badge-icon">🦅</div>
+                    <div class="badge-club-name">AL AHLY SC</div>
+                    <div class="badge-year">Cairo · 1907</div>
+                  </div>
+                </div>
+                <div class="flip-back ahly-back">
+                  <ul class="badge-stats">
+                    <li><b>42+</b> African titles</li>
+                    <li>Club of the Century</li>
+                    <li>Most decorated in Africa</li>
+                    <li>The Red Devils 🔴</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3 class="ahly-heading">AL AHLY</h3>
+              <div class="swatches">
+                <span class="sw sw-red"></span>
+                <span class="sw sw-white"></span>
+                <span class="sw sw-black"></span>
+              </div>
+              <p>Africa's most decorated club. The Red Devils. The Eagles. Tanta doesn't just support Al Ahly — he bleeds them every matchday.</p>
+            </div>
+          </div>
+
+          <div class="teams-vs">VS</div>
+
+          <!-- REAL MADRID -->
+          <div class="team-block madrid-block reveal">
+            <div class="team-info info-right">
+              <h3 class="madrid-heading">REAL MADRID</h3>
+              <div class="swatches swatches-right">
+                <span class="sw sw-white"></span>
+                <span class="sw sw-gold"></span>
+                <span class="sw sw-blue"></span>
+              </div>
+              <p>Los Blancos. 15 Champions League titles. The most successful club in football history. When Madrid play, Tanta doesn't miss a second.</p>
+            </div>
+            <div class="flip-badge">
+              <div class="flip-badge-inner">
+                <div class="flip-front madrid-front">
+                  <div class="badge-ring madrid-ring">
+                    <div class="badge-icon">👑</div>
+                    <div class="badge-club-name">REAL MADRID CF</div>
+                    <div class="badge-year">Madrid · 1902</div>
+                  </div>
+                </div>
+                <div class="flip-back madrid-back">
+                  <ul class="badge-stats">
+                    <li><b>15×</b> Champions League</li>
+                    <li>Los Galácticos</li>
+                    <li>Los Blancos ⚪</li>
+                    <li>El Real de Madrid</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- JOURNEY -->
+      <section class="journey-section" id="journey">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">The Route</p>
+          <h2>From Alexandria to Greece. Then everywhere after.</h2>
+        </div>
+        <div class="journey-container reveal">
+          <div class="journey-track">
+            <div class="track-rail"></div>
+            <button class="j-stop active" type="button"
+              data-location="Greece · Year 1"
+              data-story="Two Egyptians far from home, meeting at college in Greece. One normal day became the start of a brotherhood that neither of us had a name for.">
+              <div class="stop-dot"></div>
+              <div class="stop-num">01</div>
+              <div class="stop-name">Greece</div>
+            </button>
+            <button class="j-stop" type="button"
+              data-location="Football · Always"
+              data-story="Football became the language. Real Madrid energy against Al Ahly pride. Too many matches, too many late nights, too many arguments that were really just love.">
+              <div class="stop-dot"></div>
+              <div class="stop-num">02</div>
+              <div class="stop-name">Football</div>
+            </button>
+            <button class="j-stop" type="button"
+              data-location="Every Day · Together"
+              data-story="Sleepovers, cooking, gaming, laughing. The kind of everyday time that only real brothers share. It stopped being hanging out and became home.">
+              <div class="stop-dot"></div>
+              <div class="stop-num">03</div>
+              <div class="stop-name">Home</div>
+            </button>
+            <button class="j-stop" type="button"
+              data-location="Alexandria · 2024"
+              data-story="Back to Alexandria in 2024. But the calls stay daily. Like nothing changed. Because for real brothers, distance is just geography — never a wall.">
+              <div class="stop-dot"></div>
+              <div class="stop-num">04</div>
+              <div class="stop-name">Alexandria</div>
+            </button>
+          </div>
+          <div class="journey-story-box">
+            <p class="story-loc" id="jLoc">Greece · Year 1</p>
+            <p class="story-txt" id="jTxt">Two Egyptians far from home, meeting at college in Greece. One normal day became the start of a brotherhood that neither of us had a name for.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery-section" id="memories">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Memory Roll</p>
+          <h2>Proof the brotherhood is real.</h2>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="mem-item tilt-card wide" type="button" data-src="pics/4.jpeg"><div class="tilt-inner"><img src="pics/4.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card tall" type="button" data-src="pics/manutd.jpeg"><div class="tilt-inner"><img src="pics/manutd.jpeg" alt="Football memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/6.jpeg"><div class="tilt-inner"><img src="pics/6.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/7.jpeg"><div class="tilt-inner"><img src="pics/7.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card tall" type="button" data-src="pics/8.jpeg"><div class="tilt-inner"><img src="pics/8.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/9.jpeg"><div class="tilt-inner"><img src="pics/9.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/10.jpeg"><div class="tilt-inner"><img src="pics/10.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/11.jpeg"><div class="tilt-inner"><img src="pics/11.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card tall" type="button" data-src="pics/12.jpeg"><div class="tilt-inner"><img src="pics/12.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/13.jpeg"><div class="tilt-inner"><img src="pics/13.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/14.jpeg"><div class="tilt-inner"><img src="pics/14.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/15.jpeg"><div class="tilt-inner"><img src="pics/15.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card tall" type="button" data-src="pics/16.jpeg"><div class="tilt-inner"><img src="pics/16.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/17.jpeg"><div class="tilt-inner"><img src="pics/17.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+          <button class="mem-item tilt-card" type="button" data-src="pics/20.jpeg"><div class="tilt-inner"><img src="pics/20.jpeg" alt="Memory" /><div class="mem-hover">View</div></div></button>
+        </div>
+      </section>
+
+      <!-- VIDEOS -->
+      <section class="videos-section" id="videos">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Motion Evidence</p>
+          <h2>The archive never lies.</h2>
+        </div>
+        <div class="videos-row">
+          <div class="vid-card tilt-card reveal">
+            <div class="tilt-inner">
+              <video controls preload="metadata" playsinline>
+                <source src="pics/19.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <div class="vid-card tilt-card reveal">
+            <div class="tilt-inner">
+              <video controls preload="metadata" playsinline>
+                <source src="pics/21.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MESSAGE -->
+      <section class="msg-section" id="message">
+        <div class="msg-bg-word" aria-hidden="true">TANTA</div>
+        <div class="msg-inner reveal">
+          <div class="msg-text">
+            <p class="section-eyebrow">From Your Best Friend</p>
+            <h2>To Ahmed. To Tanta.</h2>
+            <p>Happy birthday, my brother. I still remember meeting you in first year at college in Greece. We were just two Egyptians far from home, and somehow you became one of the closest people in my life.</p>
+            <p>We played football together, spent every day together, slept at each other's houses, played video games, cooked, laughed, talked about everything. And even when you went back to Alexandria in 2024, nothing changed. We still call every day.</p>
+            <p>You are not my friend. You are my brother. You know my secrets and I know yours. Happy 21st, Tanta. I hope this year gives you wins like Madrid, pride like Ahly, peace, love, and maybe the attention of the hot girls you definitely think you deserve.</p>
+          </div>
+          <div class="msg-photo">
+            <div class="polaroid tilt-card rotate-pos">
+              <div class="tilt-inner">
+                <img src="pics/WhatsApp Image 2026-06-15 at 21.35.22.jpeg" alt="Birthday memory" />
+                <span class="polaroid-caption">The brotherhood, always.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <button class="lb-close" id="lbClose" type="button" aria-label="Close">✕</button>
+      <img id="lbImg" alt="Birthday memory" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
