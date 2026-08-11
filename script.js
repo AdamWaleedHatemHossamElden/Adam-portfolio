@@ -1,78 +1,223 @@
-/* ══════════════════════════════════════════════════
-   MOTION & TOUCH DETECTION
-══════════════════════════════════════════════════ */
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const isTouchDevice = window.matchMedia("(hover: none)").matches || navigator.maxTouchPoints > 0;
+/* ==========================================================
+   PROJECT DATA
+   Single source of truth for the Featured Projects section.
+   Add or edit a project by editing this array only.
+========================================================== */
+const PROJECTS = [
+  {
+    name: "Restaurant Operations Platform",
+    status: "in-development",
+    statusLabel: "In Development",
+    description:
+      "A secure restaurant operations platform for managing tables, reservations, authentication, and administrative workflows through a responsive full-stack application.",
+    highlights: [
+      "JWT authentication with rotating refresh tokens and Spring Security",
+      "Protected frontend routing and responsive administration screens",
+      "Table management and reservation workflows with input validation",
+      "Search and filtering across tables and reservations",
+      "Flyway database migrations and optimistic locking",
+      "Audit events, OpenAPI documentation, and test foundations on both ends",
+    ],
+    tech: ["React", "TypeScript", "Java 21", "Spring Boot", "MySQL", "Docker"],
+    github: "https://github.com/AdamWaleedHatemHossamElden/restaurant-operations-platform",
+    note: "Solo project, currently in active development.",
+    wide: true,
+  },
+  {
+    name: "CoS-BA Bias Auditor",
+    status: "completed",
+    statusLabel: "Completed — Final-Year Project — 86%",
+    description:
+      "A full-stack platform for uploading AI-generated content, reporting potential bias, reviewing community submissions, and managing moderation workflows.",
+    highlights: [
+      "User authentication and AI-content submissions with file uploads",
+      "Bias reporting, community review, likes, and comments",
+      "Search and filters with report-status tracking",
+      "Admin controls and moderation workflows",
+      "Analytical dashboards built with Recharts",
+    ],
+    tech: ["React", "Node.js", "Express", "MySQL", "JWT", "Recharts"],
+    github: "https://github.com/AdamWaleedHatemHossamElden/cosba-bias-auditor",
+    featured: true,
+    screenshots: [
+      { src: "images/cosba/dashboard.webp", label: "Dashboard", alt: "CoS-BA dashboard showing report analytics, charts, categories, and model statistics" },
+      { src: "images/cosba/home.webp", label: "Home", alt: "CoS-BA home page showing the main community content feed" },
+      { src: "images/cosba/admin.webp", label: "Admin", alt: "CoS-BA admin panel for managing users, content, reports, and report statuses" },
+    ],
+  },
+  {
+    name: "Attendance Management System v2",
+    status: "in-development",
+    statusLabel: "In Development",
+    description:
+      "An admin-focused attendance platform for managing students, sessions, attendance records, reporting, and analytical workflows.",
+    highlights: [
+      "Student management with searchable, paginated profiles",
+      "Session creation, management, and attendance marking",
+      "Dashboard analytics and attendance statistics",
+      "Bulk Excel import and export, plus report exports",
+      "REST API integration on MySQL-backed workflows with authentication",
+    ],
+    tech: ["React", "Node.js", "Express", "MySQL", "JWT"],
+    github: "https://github.com/AdamWaleedHatemHossamElden/attendance-system",
+    note: "Version 2 of the attendance system, rebuilt and actively extended.",
+  },
+  {
+    name: "TraceAI",
+    status: "in-development",
+    statusLabel: "In Development",
+    description:
+      "A human-in-the-loop platform for verifying claims in AI-generated answers against user-provided evidence.",
+    highlights: [
+      "TypeScript API and a separate Python/FastAPI AI service",
+      "MySQL database with an authentication foundation and health checks",
+      "Docker Compose development environment",
+      "Claim-level verification architecture (in progress)",
+      "Evidence-upload workflow design (in progress)",
+    ],
+    tech: ["TypeScript", "Express", "Python", "FastAPI", "MySQL", "Docker Compose"],
+    github: "https://github.com/AdamWaleedHatemHossamElden/TraceAI",
+    note: "Early-stage foundations are implemented; claim verification and evidence upload are still being built.",
+  },
+];
 
-/* ══════════════════════════════════════════════════
-   INTRO ANIMATION
-══════════════════════════════════════════════════ */
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => document.body.classList.add("page-ready"), 60);
-});
+const GITHUB_ICON =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>';
 
-/* ══════════════════════════════════════════════════
-   CURSOR GLOW
-══════════════════════════════════════════════════ */
-const cursorGlow = document.querySelector(".cursor-glow");
-
-if (!isTouchDevice && !prefersReducedMotion) {
-  document.addEventListener("mousemove", (e) => {
-    cursorGlow.style.left = e.clientX + "px";
-    cursorGlow.style.top  = e.clientY + "px";
-    cursorGlow.style.opacity = "1";
-  });
-
-  document.addEventListener("mouseleave", () => {
-    cursorGlow.style.opacity = "0";
-  });
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
 }
 
-/* ══════════════════════════════════════════════════
+function renderProjectCard(project, index) {
+  const statusClass = project.status === "completed" ? "status-completed" : "status-progress";
+  const highlights = project.highlights
+    .map((h) => `<li>${escapeHtml(h)}</li>`)
+    .join("");
+  const tags = project.tech.map((t) => `<li>${escapeHtml(t)}</li>`).join("");
+
+  const links = [];
+  if (project.github) {
+    links.push(
+      `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="github-btn" aria-label="View ${escapeHtml(
+        project.name
+      )} source code on GitHub (opens in new tab)">${GITHUB_ICON} View Code</a>`
+    );
+  }
+
+  const note = project.note ? `<p class="project-note">${escapeHtml(project.note)}</p>` : "";
+
+  let screenshotsHtml = "";
+  if (project.screenshots && project.screenshots.length) {
+    const shots = project.screenshots
+      .map(
+        (s) => `
+        <button
+          class="project-preview"
+          type="button"
+          data-img-src="${s.src}"
+          data-img-alt="${escapeHtml(s.alt)}"
+          aria-label="View full-size ${escapeHtml(s.label)} screenshot for ${escapeHtml(project.name)}"
+        >
+          <span class="project-preview-label">${escapeHtml(s.label)}</span>
+          <img src="${s.src}" alt="${escapeHtml(s.alt)}" loading="lazy" class="project-preview-img" width="1600" height="900" />
+        </button>`
+      )
+      .join("");
+    screenshotsHtml = `<div class="project-screenshots" aria-label="${escapeHtml(project.name)} screenshots">${shots}</div>`;
+  }
+
+  const featuredClass = project.featured ? " project-card-featured" : "";
+  const layoutClass = project.screenshots && project.screenshots.length ? " project-card-with-media" : "";
+  const wideClass = project.wide && !screenshotsHtml ? " project-card-wide" : "";
+
+  if (project.wide && !screenshotsHtml) {
+    return `
+      <article class="project-card${wideClass}" aria-label="${escapeHtml(project.name)}">
+        <div class="project-card-summary">
+          <div class="project-meta-row">
+            <span class="project-number">0${index + 1}</span>
+            <span class="status-badge ${statusClass}">${escapeHtml(project.statusLabel)}</span>
+          </div>
+          <h3>${escapeHtml(project.name)}</h3>
+          <p class="project-desc">${escapeHtml(project.description)}</p>
+          ${note}
+          <div class="project-links">${links.join("")}</div>
+        </div>
+        <div class="project-card-details">
+          <ul class="feature-highlights" aria-label="Key features and engineering highlights">${highlights}</ul>
+          <ul class="tag-list" aria-label="Technologies used">${tags}</ul>
+        </div>
+      </article>`;
+  }
+
+  return `
+    <article class="project-card${featuredClass}${layoutClass}" aria-label="${escapeHtml(project.name)}">
+      <div class="project-card-body">
+        <div class="project-meta-row">
+          <span class="project-number">0${index + 1}</span>
+          <span class="status-badge ${statusClass}">${escapeHtml(project.statusLabel)}</span>
+        </div>
+        <h3>${escapeHtml(project.name)}</h3>
+        <p class="project-desc">${escapeHtml(project.description)}</p>
+        <ul class="feature-highlights" aria-label="Key features and engineering highlights">${highlights}</ul>
+        <ul class="tag-list" aria-label="Technologies used">${tags}</ul>
+        ${note}
+        <div class="project-links">${links.join("")}</div>
+      </div>
+      ${screenshotsHtml}
+    </article>`;
+}
+
+function renderProjects() {
+  const grid = document.getElementById("project-grid");
+  if (!grid) return;
+  grid.innerHTML = PROJECTS.map(renderProjectCard).join("");
+}
+
+renderProjects();
+
+/* ==========================================================
+   MOTION PREFERENCE
+========================================================== */
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ==========================================================
    SCROLL PROGRESS BAR
-══════════════════════════════════════════════════ */
+========================================================== */
 const scrollBar = document.querySelector(".scroll-progress");
+window.addEventListener(
+  "scroll",
+  () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    scrollBar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
+  },
+  { passive: true }
+);
 
-window.addEventListener("scroll", () => {
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  scrollBar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
-}, { passive: true });
-
-/* ══════════════════════════════════════════════════
+/* ==========================================================
    TOPBAR SHADOW ON SCROLL
-══════════════════════════════════════════════════ */
+========================================================== */
 const topbar = document.querySelector(".topbar");
+window.addEventListener(
+  "scroll",
+  () => topbar.classList.toggle("scrolled", window.scrollY > 12),
+  { passive: true }
+);
 
-window.addEventListener("scroll", () => {
-  topbar.classList.toggle("scrolled", window.scrollY > 20);
-}, { passive: true });
-
-/* ══════════════════════════════════════════════════
-   SCROLL-TO-TOP BUTTON
-══════════════════════════════════════════════════ */
-const scrollTopBtn = document.querySelector(".scroll-top");
-
-window.addEventListener("scroll", () => {
-  scrollTopBtn.classList.toggle("visible", window.scrollY > 300);
-}, { passive: true });
-
-scrollTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-/* ══════════════════════════════════════════════════
-   HAMBURGER MENU
-══════════════════════════════════════════════════ */
+/* ==========================================================
+   MOBILE NAVIGATION
+========================================================== */
 const hamburger = document.querySelector(".hamburger");
-const mainNav   = document.querySelector("#main-nav");
+const mainNav = document.querySelector("#main-nav");
 
 hamburger.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("open");
   hamburger.classList.toggle("open", isOpen);
-  hamburger.setAttribute("aria-expanded", isOpen);
+  hamburger.setAttribute("aria-expanded", String(isOpen));
 });
 
-// Close on nav link click
 mainNav.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
     mainNav.classList.remove("open");
@@ -81,7 +226,6 @@ mainNav.querySelectorAll("a").forEach((link) => {
   });
 });
 
-// Close on outside click
 document.addEventListener("click", (e) => {
   if (!topbar.contains(e.target)) {
     mainNav.classList.remove("open");
@@ -90,249 +234,57 @@ document.addEventListener("click", (e) => {
   }
 });
 
-/* ══════════════════════════════════════════════════
-   ACTIVE NAV LINK
-══════════════════════════════════════════════════ */
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav a");
+/* ==========================================================
+   ACTIVE NAV LINK ON SCROLL
+========================================================== */
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".nav a[href^='#']");
 
 const navObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         navLinks.forEach((link) => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") === "#" + entry.target.id
-          );
+          link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
         });
       }
     });
   },
-  { rootMargin: "-35% 0px -60% 0px" }
+  { rootMargin: "-35% 0px -55% 0px" }
 );
-
 sections.forEach((s) => navObserver.observe(s));
 
-/* ══════════════════════════════════════════════════
-   SCROLL REVEAL + STAGGER
-══════════════════════════════════════════════════ */
-const revealTargets = document.querySelectorAll(".section, .contact-card");
+/* ==========================================================
+   SCREENSHOT LIGHTBOX
+========================================================== */
+const imgModal = document.getElementById("img-modal");
+const modalImg = imgModal ? imgModal.querySelector(".img-modal-img") : null;
+const modalClose = imgModal ? imgModal.querySelector(".img-modal-close") : null;
 
-// Mark cards/panels for stagger BEFORE observing
-document.querySelectorAll(".project-card, .skill-panel").forEach((el) => {
-  el.classList.add("stagger-child");
-});
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-visible");
-
-      // Stagger child cards
-      const children = entry.target.querySelectorAll(".stagger-child");
-      children.forEach((child, i) => {
-        setTimeout(() => child.classList.add("is-visible"), 70 + i * 90);
-      });
-
-      // Stagger skill tags
-      const tags = entry.target.querySelectorAll(".skill-panel");
-      tags.forEach((panel, pi) => {
-        panel.querySelectorAll(".skill-tags span").forEach((tag, ti) => {
-          tag.style.transition = `background 0.2s ease, border-color 0.2s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1) ${100 + pi * 60 + ti * 45}ms, opacity 0.35s ease ${100 + pi * 60 + ti * 45}ms, box-shadow 0.2s ease`;
-        });
-      });
-
-      sectionObserver.unobserve(entry.target);
-    });
-  },
-  { threshold: 0.08 }
-);
-
-revealTargets.forEach((t) => sectionObserver.observe(t));
-
-/* ══════════════════════════════════════════════════
-   TYPEWRITER EFFECT
-══════════════════════════════════════════════════ */
-const typeTarget = document.querySelector(".typewriter-target");
-
-if (typeTarget) {
-  const fullText = typeTarget.textContent.trim();
-
-  if (prefersReducedMotion) {
-    // Skip animation — just show text immediately with shimmer
-    typeTarget.textContent = fullText;
-    typeTarget.classList.add("shimmer");
-  } else {
-    typeTarget.textContent = "";
-
-    const cursorSpan = document.createElement("span");
-    cursorSpan.className = "cursor-blink";
-    typeTarget.appendChild(cursorSpan);
-
-    let i = 0;
-
-    function type() {
-      if (i < fullText.length) {
-        typeTarget.insertBefore(document.createTextNode(fullText[i]), cursorSpan);
-        i++;
-        setTimeout(type, 26);
-      } else {
-        // Fade cursor out, then add shimmer
-        setTimeout(() => {
-          cursorSpan.style.transition = "opacity 0.5s ease";
-          cursorSpan.style.opacity = "0";
-          setTimeout(() => {
-            typeTarget.classList.add("shimmer");
-            cursorSpan.remove();
-          }, 600);
-        }, 1600);
-      }
-    }
-
-    setTimeout(type, 350);
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   COUNTER ANIMATION
-══════════════════════════════════════════════════ */
-function animateCounter(el) {
-  const target = parseInt(el.dataset.count, 10);
-  const from   = parseInt(el.dataset.from  || "0", 10);
-  const suffix = el.dataset.suffix || "";
-  const duration = 1400;
-  const start = performance.now();
-
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const value    = Math.round(from + (target - from) * easeOut(progress));
-    el.textContent = value + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
-}
-
-if (!prefersReducedMotion) {
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const els = entry.target.querySelectorAll(".metric-value[data-count]");
-        // Slight delay so the section reveal plays first
-        setTimeout(() => els.forEach(animateCounter), 300);
-        counterObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  const heroSection = document.querySelector("#hero");
-  if (heroSection) counterObserver.observe(heroSection);
-}
-
-/* ══════════════════════════════════════════════════
-   3D TILT ON PROJECT CARDS
-══════════════════════════════════════════════════ */
-if (!prefersReducedMotion) {
-  document.querySelectorAll(".project-card").forEach((card) => {
-    let raf = null;
-    let targetRX = 0, targetRY = 0;
-    let currentRX = 0, currentRY = 0;
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function tick() {
-      currentRX = lerp(currentRX, targetRX, 0.1);
-      currentRY = lerp(currentRY, targetRY, 0.1);
-      card.style.transform =
-        `perspective(900px) rotateX(${currentRX}deg) rotateY(${currentRY}deg) translateZ(4px)`;
-
-      if (Math.abs(currentRX - targetRX) > 0.01 || Math.abs(currentRY - targetRY) > 0.01) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        raf = null;
-      }
-    }
-
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
-      targetRY =  x * 12;
-      targetRX = -y * 12;
-
-      // Spotlight glow
-      const mx = ((e.clientX - rect.left) / rect.width)  * 100;
-      const my = ((e.clientY - rect.top)  / rect.height) * 100;
-      card.style.setProperty("--mx", mx + "%");
-      card.style.setProperty("--my", my + "%");
-
-      if (!raf) raf = requestAnimationFrame(tick);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      targetRX = 0;
-      targetRY = 0;
-      if (!raf) raf = requestAnimationFrame(tick);
-    });
-  });
-}
-
-/* ══════════════════════════════════════════════════
-   MAGNETIC BUTTONS
-══════════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════════
-   COSBA SCREENSHOT LIGHTBOX
-══════════════════════════════════════════════════ */
-const imgModal    = document.getElementById("img-modal");
-const cosbaTriggers = document.querySelectorAll(".project-preview[data-img-src]");
-const modalImg    = imgModal ? imgModal.querySelector(".img-modal-img") : null;
-const modalClose  = imgModal ? imgModal.querySelector(".img-modal-close") : null;
-
-if (imgModal && cosbaTriggers.length && modalImg) {
-  cosbaTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const src = trigger.dataset.imgSrc || trigger.querySelector("img")?.src;
-      const alt = trigger.dataset.imgAlt || trigger.querySelector("img")?.alt || "";
-      if (!src) return;
-      modalImg.src = src;
-      modalImg.alt = alt;
-      imgModal.showModal();
-      modalClose?.focus();
-    });
+if (imgModal && modalImg) {
+  document.addEventListener("click", (e) => {
+    const trigger = e.target.closest(".project-preview[data-img-src]");
+    if (!trigger) return;
+    modalImg.src = trigger.dataset.imgSrc;
+    modalImg.alt = trigger.dataset.imgAlt || "";
+    imgModal.showModal();
+    modalClose?.focus();
   });
 
   imgModal.addEventListener("close", () => {
-    modalImg.src = "";
+    modalImg.removeAttribute("src");
     modalImg.alt = "";
   });
 
   modalClose?.addEventListener("click", () => imgModal.close());
 
-  // Click backdrop to close
   imgModal.addEventListener("click", (e) => {
     if (e.target === imgModal) imgModal.close();
   });
 }
 
-if (!prefersReducedMotion) {
-  document.querySelectorAll(".magnetic").forEach((btn) => {
-    btn.addEventListener("mousemove", (e) => {
-      const rect = btn.getBoundingClientRect();
-      const dx   = (e.clientX - rect.left - rect.width  / 2) * 0.28;
-      const dy   = (e.clientY - rect.top  - rect.height / 2) * 0.28;
-      btn.style.transition = "transform 0.12s ease";
-      btn.style.transform  = `translate(${dx}px, ${dy}px)`;
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      btn.style.transition = "transform 0.45s cubic-bezier(0.34,1.56,0.64,1)";
-      btn.style.transform  = "translate(0, 0)";
-    });
-  });
-}
+/* ==========================================================
+   FOOTER YEAR
+========================================================== */
+const footerYear = document.getElementById("footer-year");
+if (footerYear) footerYear.textContent = String(new Date().getFullYear());

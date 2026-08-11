@@ -1,51 +1,34 @@
-# Adam HossamElden Portfolio
+# Adam HossamElden — Portfolio
 
-Personal portfolio website for Adam HossamElden, a Computer Science graduate based in Athens, Greece. The site presents my projects, technical skills, CV, and contact links for junior software development, full-stack, frontend, backend, graduate internship, software testing, and entry-level technology opportunities.
+Personal portfolio site for Adam Waleed Hatem Ahmed HossamElden, a First-Class Computer Science graduate based in Athens, Greece, open to junior software engineering, backend, full-stack, data, and graduate roles.
 
 Live site: [adamwaleedhatemhossamelden.github.io/Adam-portfolio](https://adamwaleedhatemhossamelden.github.io/Adam-portfolio/)
 
 ## Overview
 
-This portfolio is a static website built with HTML, CSS, and JavaScript. It includes a responsive layout, animated sections, interactive project cards, a mobile navigation menu, a scroll progress bar, contact cards, and a CoS-BA screenshot lightbox.
+A static site built with plain HTML, CSS, and JavaScript — no build step, no framework, no backend. It is deployed as-is to GitHub Pages from the repository root, so all asset paths are relative and work correctly under the `/Adam-portfolio/` base path.
 
-## Featured Project
+Sections: navigation, hero, featured projects, technical skills, education and achievement, about, contact, footer.
 
-### CoS-BA Bias Auditor
+Project cards are generated at runtime from a single data array in `script.js` (`PROJECTS`), so adding, editing, or reordering a project only requires editing that array — no duplicated markup.
 
-CoS-BA is a full-stack bias-auditing platform where users can upload AI-generated content, report bias, and review community submissions through dashboards and admin moderation tools.
+## Featured Projects
 
-Key features shown in the portfolio:
-
-- Community bias reporting with media uploads
-- Admin moderation dashboard
-- Dashboard analytics with charts
-- JWT authentication and role-based access control
-- REST API with a structured MySQL data layer
-
-Repository: [cosba-bias-auditor](https://github.com/AdamWaleedHatemHossamElden/cosba-bias-auditor)
-
-## Other Projects
-
-- **Attendance Management System** - Full-stack attendance platform for managing students, records, and daily attendance workflows.
-- **Restaurant Management System** - Java and MySQL system for restaurant operations with API testing.
-- **Library Management System** - React web app for managing books, borrowing, and core library operations.
+1. **Restaurant Operations Platform** — In Development. React, TypeScript, Java 21, Spring Boot, MySQL, Docker.
+   Repository: [restaurant-operations-platform](https://github.com/AdamWaleedHatemHossamElden/restaurant-operations-platform)
+2. **CoS-BA Bias Auditor** — Completed, Final-Year Project (86%). React, Node.js, Express, MySQL, JWT, Recharts.
+   Repository: [cosba-bias-auditor](https://github.com/AdamWaleedHatemHossamElden/cosba-bias-auditor)
+3. **Attendance Management System v2** — In Development. React, Node.js, Express, MySQL, JWT.
+   Repository: [attendance-system](https://github.com/AdamWaleedHatemHossamElden/attendance-system)
+4. **TraceAI** — In Development. TypeScript, Express, Python, FastAPI, MySQL, Docker Compose.
+   Repository: [TraceAI](https://github.com/AdamWaleedHatemHossamElden/TraceAI)
 
 ## Tech Stack
 
-- HTML5
-- CSS3
-- JavaScript
-- Responsive design
-- CSS animations and transitions
-- Native HTML dialog for screenshot previews
-- GitHub Pages deployment
-
-## Skills Highlighted
-
-- Frontend: HTML, CSS, JavaScript, React, Vite, React Router, Axios, Recharts
-- Backend: Node.js, Express, REST APIs, JWT authentication, MySQL, Multer, dotenv
-- Programming: Java, Python, C/C++
-- Tools: Git, GitHub, Postman, Linux, VS Code, npm
+- HTML5, CSS3, vanilla JavaScript (ES6+)
+- Data-driven project rendering (no templating framework)
+- Native `<dialog>` for the screenshot lightbox
+- GitHub Pages deployment (static, no build pipeline)
 
 ## Project Structure
 
@@ -54,27 +37,22 @@ Repository: [cosba-bias-auditor](https://github.com/AdamWaleedHatemHossamElden/c
 |-- index.html
 |-- styles.css
 |-- script.js
-|-- AdamHossamEldenCV.pdf
+|-- favicon.svg
+|-- Adam_HossamElden_CV_2026.pdf
 `-- images/
     `-- cosba/
-        |-- dashboard.png
-        |-- home.png
-        `-- admin.png
+        |-- dashboard.webp
+        |-- home.webp
+        `-- admin.webp
 ```
 
 ## Run Locally
-
-Because this is a static site, it can be opened directly in a browser. For the best local testing experience, run a simple local server:
 
 ```bash
 python -m http.server 4180
 ```
 
-Then open:
-
-```text
-http://127.0.0.1:4180/
-```
+Then open <http://127.0.0.1:4180/>.
 
 ## Contact
 

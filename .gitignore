@@ -1,0 +1,7 @@
+chrome-profile/
+_to_delete/
+node_modules/
+COMMIT_MSG.txt
+*.tmp
+qa-*.png
+test-results/
