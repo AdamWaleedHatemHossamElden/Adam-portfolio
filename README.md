@@ -14,7 +14,7 @@ Project cards are generated at runtime from a single data array in `script.js` (
 
 ## Featured Projects
 
-1. **Restaurant Operations Platform** — In Development. React, TypeScript, Java 21, Spring Boot, MySQL, Docker.
+1. **Restaurant Operations Platform** — Completed. React, TypeScript, Java, Spring Boot, MySQL, Docker.
    Repository: [restaurant-operations-platform](https://github.com/AdamWaleedHatemHossamElden/restaurant-operations-platform)
 2. **CoS-BA Bias Auditor** — Completed, Final-Year Project (86%). React, Node.js, Express, MySQL, JWT, Recharts.
    Repository: [cosba-bias-auditor](https://github.com/AdamWaleedHatemHossamElden/cosba-bias-auditor)

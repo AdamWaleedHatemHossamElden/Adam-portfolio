@@ -6,22 +6,27 @@
 const PROJECTS = [
   {
     name: "Restaurant Operations Platform",
-    status: "in-development",
-    statusLabel: "In Development",
+    status: "completed",
+    statusLabel: "Completed",
     description:
-      "A secure restaurant operations platform for managing tables, reservations, authentication, and administrative workflows through a responsive full-stack application.",
+      "Full-stack restaurant operations platform built with Spring Boot, React, TypeScript, and MySQL, featuring secure authentication, transactional workflows, real-time kitchen updates, inventory, scheduling, payments, and operational reporting.",
+    proof: "250 automated tests • WebSockets • Concurrency control • Docker & CI",
     highlights: [
-      "JWT authentication with rotating refresh tokens and Spring Security",
-      "Protected frontend routing and responsive administration screens",
-      "Table management and reservation workflows with input validation",
-      "Search and filtering across tables and reservations",
-      "Flyway database migrations and optimistic locking",
-      "Audit events, OpenAPI documentation, and test foundations on both ends",
+      "Secure authentication and protected operational workflows",
+      "Reservations, table service, menu, order, payment, and invoicing flows",
+      "Real-time kitchen ticket updates with WebSockets",
+      "Inventory, supplier, staff scheduling, and reporting modules",
+      "MySQL/Flyway persistence with transactional workflows and concurrency control",
+      "Frontend, backend, and MySQL integration tests running through Docker and CI",
     ],
-    tech: ["React", "TypeScript", "Java 21", "Spring Boot", "MySQL", "Docker"],
+    tech: ["React", "TypeScript", "Java", "Spring Boot", "MySQL", "Docker"],
     github: "https://github.com/AdamWaleedHatemHossamElden/restaurant-operations-platform",
-    note: "Solo project, currently in active development.",
-    wide: true,
+    note: "Solo full-stack project.",
+    screenshots: [
+      { src: "images/restaurant/dashboard.png", label: "Dashboard", alt: "Restaurant Operations Platform dashboard showing operations overview metrics, quick access cards, and backend connection status" },
+      { src: "images/restaurant/kitchen.png", label: "Kitchen", alt: "Restaurant Operations Platform kitchen display showing real-time preparation queues and ticket statuses" },
+      { src: "images/restaurant/reservations.png", label: "Reservations", alt: "Restaurant Operations Platform reservations screen showing guest planning filters, reservation statuses, and table assignments" },
+    ],
   },
   {
     name: "CoS-BA Bias Auditor",
@@ -107,6 +112,7 @@ function renderProjectCard(project, index) {
   }
 
   const note = project.note ? `<p class="project-note">${escapeHtml(project.note)}</p>` : "";
+  const proof = project.proof ? `<p class="project-proof">${escapeHtml(project.proof)}</p>` : "";
 
   let screenshotsHtml = "";
   if (project.screenshots && project.screenshots.length) {
@@ -142,6 +148,7 @@ function renderProjectCard(project, index) {
           </div>
           <h3>${escapeHtml(project.name)}</h3>
           <p class="project-desc">${escapeHtml(project.description)}</p>
+          ${proof}
           ${note}
           <div class="project-links">${links.join("")}</div>
         </div>
@@ -161,6 +168,7 @@ function renderProjectCard(project, index) {
         </div>
         <h3>${escapeHtml(project.name)}</h3>
         <p class="project-desc">${escapeHtml(project.description)}</p>
+        ${proof}
         <ul class="feature-highlights" aria-label="Key features and engineering highlights">${highlights}</ul>
         <ul class="tag-list" aria-label="Technologies used">${tags}</ul>
         ${note}

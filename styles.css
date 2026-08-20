@@ -426,6 +426,22 @@ h3 {
   font-size: 0.96rem;
 }
 
+.project-proof {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: -0.2rem 0 1rem;
+  padding: 0.42rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent-light);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
 .feature-highlights {
   list-style: none;
   padding: 0;
